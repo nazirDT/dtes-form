@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DT Environmental Services - Inquiry Form</title>
+    <link rel="icon" href="Favicon7.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-green: #284734; /* Primary dark green for background and container */
+            --content-padding-desktop: 30px; /* Padding inside the border on desktop */
+            --content-padding-mobile: 20px; /* Padding inside the border on mobile */
+        }
+
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* The 'canvas' background - NOW AN IMAGE */
+            background: url('bodyggg.jpg') no-repeat center center fixed; /* Set image, no repeat, centered, fixed */
+            background-size: cover; /* Ensure the image covers the entire background */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            display: flex; /* Flexbox to center the menu */
+            justify-content: center; /* Center menu horizontally */
+            align-items: center; /* Center menu vertically */
+            box-sizing: border-box; /* Include padding in element's total size */
+        }
+
+        /* The 'menu' container */
+        .container {
+            max-width: 600px;
+            width: 90%; /* Fluid width for responsiveness */
+            margin: 50px auto; /* Top/bottom margin, horizontally centered */
+            background-color: var(--main-green); /* Background of the menu */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+
+            /* Establish positioning context for inner bush decorations */
+            position: relative;
+            /* Adjusted padding to remove space for header bushes, keep space for footer bushes */
+            padding: var(--content-padding-desktop) var(--content-padding-desktop) 274.2px;
+            overflow: hidden; /* Important: Ensures inner absolute elements are clipped */
+        }
+
+        /* All content within the container should be positioned relatively */
+        .container > *:not(.footer-bushes) { /* Updated to only exclude .footer-bushes */
+            position: relative;
+            z-index: 2; /* Set base z-index for content */
+        }
+
+        /* Resetting margin/width adjustments for content elements */
+        .container .header-content,
+        .container fieldset.option-group,
+        .container textarea,
+        .container .form-group input,
+        .container .generate-button,
+        .container .validation-error,
+        .container .confirmation-message,
+        .container .separator-line,
+        .container .call-text,
+        .container .call-buttons-group,
+        .container .facebook-social-link,
+        .container .gmail-social-link,
+        .container .info-text,
+        .container .form-group label,
+        .container .option label {
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea,
+        .form-group input{
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            margin-bottom: 30px;
+        }
+
+        .header-content {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .company-video-logo {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+        }
+
+        /* Styles for the new header image */
+        .header-image {
+            width: 100%; /* Makes the image fill the width of its container */
+            height: auto; /* Maintains aspect ratio */
+            display: block; /* Removes extra space below the image */
+            margin-bottom: 20px; /* Keeps the bottom margin */
+        }
+
+        h2 {
+            margin: 0;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+
+        fieldset.option-group {
+            border: none;
+            padding: 0;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        fieldset.option-group:last-of-type {
+            border-bottom: none;
+            margin-bottom: 40px;
+            padding-bottom: 0;
+        }
+        fieldset.option-group legend {
+            padding: 0;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-size: 1.17em;
+            font-weight: bold;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .option:last-child {
+            margin-bottom: 0;
+        }
+        .option:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .option input{
+            margin-right: 12px;
+            transform: scale(1.1);
+            accent-color: #25D366;
+        }
+        .option label {
+            cursor: pointer;
+            flex-grow: 1;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #FFFFFF;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1em;
+            height: 120px;
+            resize: vertical;
+        }
+
+        textarea::placeholder {
+            color: #B0B0B0;
+            text-shadow: none;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #90EE90;
+            box-shadow: 0 0 5px rgba(144, 238, 144, 0.7);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-weight: bold;
+        }
+
+        .form-group input{
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #FFFFFF;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1em;
+        }
+
+        .form-group input::placeholder {
+            color: #B0B0B0;
+            text-shadow: none;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #90EE90;
+            box-shadow: 0 0 5px rgba(144, 238, 144, 0.7);
+        }
+
+
+        .action-button {
+            display: block;
+            padding: 15px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, opacity 0.3s;
+            margin-top: 20px;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        .action-button:hover {
+            opacity: 0.9;
+        }
+
+        .generate-button {
+            width: 100%;
+            background-color: #25D366;
+            font-weight: bold;
+            color: white;
+            border: 2px solid #90EE90;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-shadow:
+                -1px -1px 0 #1A4D2E,
+                1px -1px 0 #1A4D2E,
+                -1px 1px 0 #1A4D2E,
+                1px 1px 0 #1A4D2E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .generate-button img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+
+        .separator-line {
+            border: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
+        }
+
+        .call-text {
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .call-buttons-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .call-buttons-group .action-button {
+            width: 48%;
+            margin-top: 0;
+        }
+
+        .whatsapp-call-button {
+            background-color: #1a8f46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-call-button img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .whatsapp-call-button:hover {
+            background-color: #157338;
+        }
+
+        .regular-call-button {
+            background-color: #007bff;
+        }
+
+        .regular-call-button:hover {
+            background-color: #0056b3;
+        }
+
+        .info-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-size: 0.9em;
+            position: relative;
+            z-index: 3; /* Raise this text above the bushes */
+        }
+
+        .confirmation-message {
+            display: none;
+            background-color: rgba(212, 237, 218, 0.9);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: none;
+        }
+
+        .validation-error {
+            display: none;
+            color: #ffcccc;
+            background-color: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff0000;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: none;
+        }
+
+        .facebook-button {
+            background-color: #1877F2;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 4.4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            width: 60px;
+            height: 60px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .facebook-button:hover {
+            background-color: #1360c3;
+        }
+
+        .facebook-button .facebook-icon-f {
+            display: inline-block;
+            transform: translateY(12px);
+        }
+
+        .facebook-social-link {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .facebook-text-label {
+            margin-left: 15px;
+            font-size: 1.1em;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-weight: bold;
+        }
+
+        .facebook-text-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .gmail-button {
+            background-color: #EA4335;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            width: 60px;
+            height: 60px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .gmail-button:hover {
+            background-color: #cc372c;
+        }
+
+        .gmail-icon {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+
+        .gmail-social-link {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            margin-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gmail-text-label {
+            margin-left: 15px;
+            font-size: 1.1em;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            font-weight: bold;
+        }
+
+        .gmail-text-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /* CSS for the decorative footer bushes - Upscaled by 100% from previous size */
+        .footer-bushes {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 274.2px; /* 137.1px * 2 = 274.2px */
+            background-image: url('bushes.png');
+            background-size: 45.7% 45.7%; /* 22.85% * 2 = 45.7% */
+            background-position: bottom;
+            background-repeat: repeat-x; /* Remains repeat-x */
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                /* Adjusted padding for mobile to remove header bush space, keep footer bush space */
+                padding: var(--content-padding-mobile) var(--content-padding-mobile) 228.4px; /* 114.2px * 2 = 228.4px */
+            }
+
+            .footer-bushes {
+                height: 228.4px; /* 114.2px * 2 = 228.4px */
+                background-size: 45.7% 45.7%;
+            }
+
+            .company-video-logo {
+                max-width: 200px;
+            }
+
+            .header-content h2 {
+                font-size: 1.8em;
+                color: #FFFFFF;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            }
+
+            .action-button {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .call-buttons-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .call-buttons-group .action-button {
+                width: 100%;
+            }
+
+            .whatsapp-call-button {
+                width: 100%;
+            }
+
+            .whatsapp-call-button img {
+                height: 18px;
+                width: 18px;
+                margin-right: 8px;
+            }
+
+            .generate-button img {
+                height: 18px;
+                width: 18px;
+                margin-right: 8px;
+            }
+
+            .facebook-button {
+                width: 50px;
+                height: 50px;
+                font-size: 3.5em;
+            }
+
+            .facebook-button .facebook-icon-f {
+                transform: translateY(10px);
+            }
+
+            .facebook-social-link {
+                margin-left: 10px;
+            }
+
+            .facebook-text-label {
+                font-size: 1em;
+                margin-left: 10px;
+                color: #FFFFFF;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            }
+
+            .gmail-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .gmail-social-link {
+                margin-left: 10px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+
+            .gmail-text-label {
+                font-size: 1em;
+                margin-left: 10px;
+                color: #FFFFFF;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="footer-bushes"></div>
+
+        <div class="header-content">
+            <img src="" alt="DT Environmental Services Header" class="header-image" onerror="this.style.display='none';">
+            <video autoplay loop muted playsinline class="company-video-logo" poster="https://placehold.co/300x300/284734/FFFFFF?text=DTES">
+                <source src="your-logo-video.mp4" type="video/mp4" onerror="this.parentElement.style.display='none';">
+                <source src="your-logo-video.webm" type="video/webm" onerror="this.parentElement.style.display='none';">
+                Your browser does not support the video tag.
+            </video>
+            <h2>DT Environmental Services</h2>
+        </div>
+        <h1>Customize Your Inquiry</h1>
+
+        <fieldset class="option-group">
+            <legend>Select Service(s):</legend>
+            <div class="option">
+                <input type="checkbox" id="service1" name="service" value="Lawn Maintenance">
+                <label for="service1">Lawn Maintenance</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service2" name="service" value="Pressure Washing">
+                <label for="service2">Pressure Washing</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service3" name="service" value="Decorative Stonework">
+                <label for="service3">Decorative Stonework</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service4" name="service" value="Hedge Trimming/Styling">
+                <label for="service4">Hedge Trimming/Styling</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service5" name="service" value="Pest Control (Mosquitoes, Ants/African Snails)">
+                <label for="service5">Pest Control (Mosquitoes/Ants/African Snails)</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service6" name="service" value="Fence Installation (Anti-Climb, Palisade)">
+                <label for="service6">Fence Installation (Anti-Climb, Palisade)</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service7" name="service" value="Electrical and Plumbing Repairs">
+                <label for="service7">Electrical and Plumbing Repairs</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service8" name="service" value="Painting">
+                <label for="service8">Painting</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service9" name="service" value="Metal Fabrication">
+                <label for="service9">Metal Fabrication</label>
+            </div>
+            <div class="option">
+                <input type="checkbox" id="service10" name="service" value="Lawn Grass Installation">
+                <label for="service10">Lawn Grass Installation</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="option-group">
+            <legend>Urgency:</legend>
+            <div class="option">
+                <input type="radio" id="urgency_low" name="urgency" value="Low" checked>
+                <label for="urgency_low">Low (within a few weeks)</label>
+            </div>
+            <div class="option">
+                <input type="radio" id="urgency_medium" name="urgency" value="Medium">
+                <label for="urgency_medium">Medium (within a week)</label>
+            </div>
+            <div class="option">
+                <input type="radio" id="urgency_high" name="urgency" value="High">
+                <label for="urgency_high">High (as soon as possible)</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="option-group">
+            <legend>Other Inquiries/Details:</legend>
+            <p style="font-size: 0.9em; margin-bottom: 5px; color: #ccc; text-shadow: none;">Tell us more about your needs, including your name and preferred contact method (email or phone).</p>
+            <textarea id="otherInquiry" placeholder="Provide any additional details or specific requests here, such as your location, preferred dates, or specific dimensions."></textarea>
+        </fieldset>
+
+        <button type="button" class="action-button generate-button" onclick="generateWhatsAppMessage()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" onerror="this.style.display='none'"> Send Inquiry via WhatsApp
+        </button>
+        <div class="validation-error" id="validationError">
+            Please select at least one service or provide details in the 'Other Inquiries/Details' section.
+        </div>
+        <div class="confirmation-message" id="whatsappConfirmation">
+            Preparing your WhatsApp message...
+        </div>
+        <div class="confirmation-message" id="emailConfirmation">
+            Composing your email...
+        </div>
+
+        <hr class="separator-line">
+        <div class="call-text">Give Us A Call</div>
+        <hr class="separator-line">
+
+        <div class="call-buttons-group">
+            <button type="button" class="action-button whatsapp-call-button" onclick="callWhatsApp()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" onerror="this.style.display='none'"> Call via WhatsApp
+            </button>
+            <button type="button" class="action-button regular-call-button" onclick="callRegular()">Regular Call</button>
+        </div>
+
+        <div class="facebook-social-link">
+            <a href="https://www.facebook.com/DTEnvironmentalServices?mibextid=ZbWKwL" class="facebook-button" target="_blank">
+                <span class="facebook-icon-f">f</span>
+            </a>
+            <a href="https://www.facebook.com/DTEnvironmentalServices?mibextid=ZbWKwL" target="_blank" class="facebook-text-link">
+                <span class="facebook-text-label">Facebook</span>
+            </a>
+        </div>
+
+        <div class="gmail-social-link">
+            <a href="#" class="gmail-button" onclick="sendEmail(event)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Icon" class="gmail-icon" onerror="this.style.display='none'">
+            </a>
+            <a href="#" class="gmail-text-link" onclick="sendEmail(event)">
+                <span class="gmail-text-label">Email Us</span>
+            </a>
+        </div>
+
+        <p class="info-text">Choose your preferred contact method: send a detailed inquiry via WhatsApp message, select a direct call option, or visit our Facebook page.</p>
+
+    </div>
+
+    <script>
+        const CONTACT_PHONE_NUMBER = '18684671641';
+        const CONTACT_EMAIL = 'dtes294@gmail.com';
+        const REDIRECTION_DELAY = 1000; // 1 second delay for confirmation messages
+
+        /**
+         * Gathers all selected services, urgency, and other inquiry details
+         * to form a cohesive message string for WhatsApp or Email.
+         * @returns {string} The formatted inquiry message.
+         */
+        function getInquiryMessageContent() {
+            console.log("getInquiryMessageContent called."); // Debugging line
+            const otherInquiryText = document.getElementById('otherInquiry').value.trim();
+            const selectedServices = document.querySelectorAll('input[name="service"]:checked');
+            const selectedUrgency = document.querySelector('input[name="urgency"]:checked');
+
+            let message = "Hello, I would like to inquire about a service. Here are my selections:\n\n";
+
+            if (selectedServices.length > 0) {
+                message += "Services Selected:\n";
+                selectedServices.forEach(service => {
+                    message += `- ${service.value}\n`;
+                });
+                message += "\n";
+            } else {
+                message += "No specific services selected, proceeding with other details.\n\n";
+            }
+
+            if (selectedUrgency) {
+                message += `Urgency: ${selectedUrgency.value}\n\n`;
+            }
+
+            if (otherInquiryText) {
+                message += `Other Details:\n${otherInquiryText}\n\n`;
+            } else {
+                 message += "No additional details provided.\n\n"; // Added for direct email
+            }
+
+
+            return message;
+        }
+
+        /**
+         * Generates and opens a WhatsApp message link based on form input.
+         * Displays a validation error if no services or details are provided.
+         */
+        function generateWhatsAppMessage() {
+            console.log("generateWhatsAppMessage called."); // Debugging line
+            const otherInquiryText = document.getElementById('otherInquiry').value.trim();
+            const selectedServices = document.querySelectorAll('input[name="service"]:checked');
+            const validationError = document.getElementById('validationError');
+            const whatsappConfirmation = document.getElementById('whatsappConfirmation');
+
+            // Hide previous messages
+            validationError.style.display = 'none';
+            whatsappConfirmation.style.display = 'none';
+
+            if (selectedServices.length === 0 && !otherInquiryText) {
+                validationError.style.display = 'block'; // Show inline error
+                return;
+            }
+
+            const message = getInquiryMessageContent();
+            whatsappConfirmation.style.display = 'block'; // Show "Preparing..." message
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${CONTACT_PHONE_NUMBER}?text=${encodedMessage}`;
+
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                whatsappConfirmation.style.display = 'none'; // Hide confirmation after redirection
+            }, REDIRECTION_DELAY);
+        }
+
+        /**
+         * Initiates a WhatsApp call to the predefined contact number.
+         */
+        function callWhatsApp() {
+            console.log("callWhatsApp called."); // Debugging line
+            // Note: Direct calling via wa.me is not universally supported and may open a chat instead.
+            window.open(`https://wa.me/${CONTACT_PHONE_NUMBER}`, '_blank');
+        }
+
+        /**
+         * Initiates a regular phone call to the predefined contact number.
+         */
+        function callRegular() {
+            console.log("callRegular called."); // Debugging line
+            window.location.href = `tel:+${CONTACT_PHONE_NUMBER}`;
+        }
+
+        /**
+         * Generates and opens an email client link.
+         * This version no longer requires service selection or other inquiry text.
+         * It will directly open the email client with a predefined subject.
+         * @param {Event} event The click event to prevent default link behavior.
+         */
+        function sendEmail(event) {
+            console.log("sendEmail called (direct to Gmail)."); // Debugging line
+            event.preventDefault(); // Prevent default link behavior for the <a> tag
+
+            const emailConfirmation = document.getElementById('emailConfirmation');
+            const validationError = document.getElementById('validationError');
+
+            // Hide previous messages (validation error no longer needed but good practice)
+            validationError.style.display = 'none';
+            emailConfirmation.style.display = 'none';
+
+            // No validation check needed anymore.
+            // The message body will still gather info if available, but it's not required.
+            const messageBody = getInquiryMessageContent(); // Still gathers info if present
+            const subject = "General Inquiry from Website"; // Changed to a more general subject
+
+            const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
+
+            emailConfirmation.style.display = 'block'; // Show "Composing..." message
+
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+                emailConfirmation.style.display = 'none'; // Hide confirmation after attempting to open email client
+            }, REDIRECTION_DELAY);
+        }
+    </script>
+</body>
+</html>
